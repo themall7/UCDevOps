@@ -1,6 +1,6 @@
 <?php namespace App\Providers;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider, Blade;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -12,6 +12,10 @@ class AppServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		// Blade::setRawTags ("{{","}}");
+		// Blade::directive('hasError', function ($args) {
+		// 	var_dump(with($args));die;
+  //           //return $args[0]->has($args[1]) ? 'has-error' : '';
+  //       });
 	}
 
 	/**

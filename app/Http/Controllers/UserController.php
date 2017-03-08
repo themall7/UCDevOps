@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Input, Validator, Redirect, Auth;
+
 class UserController extends Controller {
 
 	/*
@@ -45,7 +47,7 @@ class UserController extends Controller {
 		    'email'    => 'required|email', // make sure the email is an actual email
 		    'password' => 'required|alphaNum|min:3' // password can only be alphanumeric and has to be greater than 3 characters
 		);
-var_dump(Input::get('email'));die;
+
 		// run the validation rules on the inputs from the form
 		$validator = Validator::make(Input::all(), $rules);
 
@@ -69,16 +71,29 @@ var_dump(Input::get('email'));die;
 		        // redirect them to the secure section or whatever
 		        // return Redirect::to('secure');
 		        // for now we'll just echo success (even though echoing in a controller is bad)
-		        echo 'SUCCESS!';
+		        //echo 'SUCCESS!';
+		        return Redirect::to('dashboard');
 
 		    } else {        
 
 		        // validation not successful, send back to form 
-		        return Redirect::to('login');
+			    return Redirect::to('login')
+			        ->withErrors($validator)
+			        ->withInput(Input::except('password'))
+			        ->With('message', 'Incorrect email and/or password.');
 
 		    }
 
 		}
 	}
 
+	/**
+	 * Process logout.
+	 *
+	 * @return Response
+	 */
+	public function getLogout() {
+		Auth::logout();
+		return Redirect::to('/');
+	}
 }

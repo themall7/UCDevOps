@@ -33,13 +33,32 @@
 			.quote {
 				font-size: 24px;
 			}
+
+			a {
+				text-decoration: none;
+			}
+
+			ul {
+				list-style-type: none;
+			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Laravel 5</div>
-				<div class="quote">{{ Inspiring::quote() }}</div>
+				<div class="title">UCDevOps</div>
+				<div class="quote">
+					<ul>
+					@if (Auth::guest())
+						<li><a href="{{url('login')}}">Login</a></li>
+						<li><a href="{{url('register')}}">Register</a></li>
+					@else
+						<li><a href="{{url('dashboard')}}">Dashboard</a></li>
+					@endif
+						<li><a href="{{url('ui')}}">UI</a></li>
+					</ul>
+				</div>
+				<!--<div class="quote">{{ Inspiring::quote() }}</div>-->
 			</div>
 		</div>
 	</body>

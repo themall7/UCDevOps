@@ -11,16 +11,22 @@
 |
 */
 
-Route::group(['middleware' => 'auth'], function()
+Route::get('/', function()
 {
-	Route::get('/', function()
-	{
-		return View::make('home');
-	});
+	return View::make('welcome');
 });
 
-Route::get('/auth/login', ['uses' => 'UserController@getLogin']);
-Route::post('/auth/login', ['uses' => 'UserController@postLogin']);
+Route::get('/login', ['uses' => 'UserController@getLogin']);
+Route::post('/login', ['uses' => 'UserController@postLogin']);
+Route::get('/logout', ['uses' => 'UserController@getLogout']);
+
+Route::group(['middleware' => 'auth'], function()
+{
+	Route::get('/dashboard', function()
+	{
+		return View::make('dashboard');
+	});
+});
 
 
 /*Route::group(['prefix' => 'kk'], function () {
@@ -37,6 +43,11 @@ Route::group(['prefix' => 'ui'], function () {
 	});
 
 });
+Route::get('/app', function()
+{
+	return View::make('app');
+});
+
 Route::get('/charts', function()
 {
 	return View::make('mcharts');
