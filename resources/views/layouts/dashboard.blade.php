@@ -244,6 +244,11 @@
                             </div>
                             <!-- /input-group -->
                         </li>
+                        <!-- UCDevOps -->
+                        <li {{ (Request::is('*user*') ? 'class="active"' : '') }}>
+                            <a href="{{ url ('users') }}"><i class="fa fa-user fa-fw"></i> Users</a>
+                        </li>
+                        <!-- UCDevOps -->
                         <li {{ (Request::is('/') ? 'class="active"' : '') }}>
                             <a href="{{ url ('') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>

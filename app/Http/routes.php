@@ -26,6 +26,12 @@ Route::group(['middleware' => 'auth'], function()
 	{
 		return View::make('dashboard');
 	});
+
+	// Users
+	Route::get('/users', ['uses' => 'UserController@getUsers']);
+	Route::get('/user/{id?}', ['uses' => 'UserController@getUser']);
+	Route::post('/user/{id?}', ['uses' => 'UserController@postUser']);
+	Route::get('/user/{id}/delete', ['uses' => 'UserController@deleteUser']);
 });
 
 

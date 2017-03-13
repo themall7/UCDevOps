@@ -6,6 +6,7 @@
             <br /><br /><br />
                @section ('login_panel_title','Please Sign In')
                @section ('login_panel_body')
+			   
                         <form role="form" action="login" method="post">
                             <input type="hidden" name="_token" value="{{{ csrf_token() }}}" />
                             <fieldset>
